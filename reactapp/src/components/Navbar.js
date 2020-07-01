@@ -2,13 +2,14 @@ import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import {useTransition, animated} from 'react-spring'
+import NavbarMenu from './NavbarMenu'
+
+
 
 function Navbar(){
 
     const [showMenu, setShowMenu] = useState(false)
 
-    //
-    // 
     
     const MenuTransitions = useTransition(showMenu, null, {
         from: {opacity: 0, transform : 'translateX(-100%)'},
@@ -34,13 +35,9 @@ function Navbar(){
                 <animated.div 
                 key={key}
                 style={props}
-                className = "fixed bg-white top-0 left-0 h-full w-3/5 z-50 shadow">
-                    <span className = "font-bold">Menu</span>
-                    <ul>
-                        <li>Home</li>
-                        <li>About</li>
-                    </ul>
-                </animated.div>
+                className = "fixed bg-white top-0 left-0 h-full w-2/5 z-50 shadow">
+                    <NavbarMenu closeMenu = {() => setShowMenu(false)} />
+                </animated.div>  
                )
            }
            {
@@ -50,8 +47,9 @@ function Navbar(){
                key={key} 
                style={props}
                className = "bg-black-t-50 fixed top-0 left-0 w-full h-full"
-               onClick = {() => setShowMenu(false)}
-               ></animated.div>
+               onClick = {() => setShowMenu(false)}>
+                  
+               </animated.div>
                )
            }
        </nav>
