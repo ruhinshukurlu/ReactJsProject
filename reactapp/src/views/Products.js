@@ -2,40 +2,15 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import Loader from '../components/Loader'
+import useAxiosGet from '../Hooks/gerRequest'
 
 
 function Products() {
     const {id} = useParams()
-    const url = `https://5efca601cf235d0016ad7b0b.mockapi.io/products/v1/products/${id}`
+    const url = `http://127.0.0.1:8000/api/cars/${id}`
 
-    const [product, setProducts] = useState({
-        loading : false,
-        data : null
-    })
+    let product = useAxiosGet(url)
     let content = null
-
-    useEffect(() => {
-        setProducts({
-            loading : true,
-            data : null,
-            error : false
-        })
-        axios.get(url)
-            .then(response => {
-                setProducts({
-                    loading : false,
-                    data : response.data,
-                    error : false
-                })
-            })
-            .catch(() => {
-                setProducts({
-                    loading : false,
-                    data : null,
-                    error : true
-                })
-            })
-        },[url])
     
     if (product.loading) {
         content = <Loader/>

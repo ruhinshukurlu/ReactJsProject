@@ -15,7 +15,7 @@ import Products from './views/Products';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App relative ">
      <Router>
       <Header/>
       <Switch>
